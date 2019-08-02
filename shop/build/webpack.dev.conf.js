@@ -42,6 +42,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app){
+      app.get('/api/swiper',(req,res)=>{
+        let data=require('../src/data/swiper.json')
+        res.send({code:1,data:data})
+      })
     }
   },
   plugins: [
